@@ -10,7 +10,6 @@ class Cliente(models.Model):
     apellido = models.CharField(max_length=40)
     email = models.EmailField()
 
-
 class Bodegas(models.Model):
     nombre = models.CharField(max_length=40)
     cantidad = models.IntegerField()

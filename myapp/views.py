@@ -5,10 +5,10 @@ from .models import *
 # Create your views here.
 
 def inicio(request):
-    return render(request, 'myapp/template1.html')
+    return render(request, 'index.html')
 
-def  LaVid(request):
-    return HttpResponse("Bienvenidos a LaVid, creamos experiencias")
+def LaVid(request):
+    return HttpResponse(request,"Bienvenidos a LaVid, creamos experiencias")
 
 def lista_Vinos(request):
     vino=Bodegas.objects.all().order_by('nombre')
