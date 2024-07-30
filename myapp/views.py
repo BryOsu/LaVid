@@ -32,4 +32,4 @@ def buscar_cliente(request):
             query = form.cleaned_data['query']
             resultados = Cliente.objects.filter(email__icontains=query)
     
-    return render(request, 'buscar_cliente.html', {'form': form, 'resultados': resultados})
+    return render(request, 'index.html', {'form': form, 'resultados': resultados})

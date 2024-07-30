@@ -32,3 +32,42 @@
       </form>
 </div>
 {% endblock Formulario %}
+
+
+{% block Buscar %}
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Cliente</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Buscar Cliente</h1>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    {{ form.query.label_tag }}
+                    {{ form.query }}
+                    <div class="invalid-feedback text-white" data-sb-feedback="query:required">Este campo es requerido.</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+        </form>
+
+        {% if resultados %}
+            <h2 class="mt-5">Resultados</h2>
+            <ul class="list-group">
+                {% for cliente in resultados %}
+                    <li class="list-group-item">
+                        <strong>Nombre:</strong> {{ cliente.nombre }}<br>
+                        <strong>Email:</strong> {{ cliente.email }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elif form.is_bound %}
+            <p class="mt-5 text-danger">No se encontraron resultados.</p>
+        {% endif %}
+    </div>
+</body>
+{% endblock Buscar %}
