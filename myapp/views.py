@@ -16,8 +16,13 @@ def registro_cliente(request):
             nombre = form.cleaned_data['nombre']
             apellido = form.cleaned_data['apellido']
             email = form.cleaned_data['email']
-            guardado=Cliente.objects.create(nombre=nombre, apellido=apellido, email=email)
-            Cliente.save(guardado)
+            user_exists = Cliente.objects.filter(email=form.cleaned_data['email']).exists()
+            if user_exists:
+                return HttpResponse("El usuario ya está registrado.")
+            else:
+                guardado=Cliente.objects.create(nombre=nombre, apellido=apellido, email=email)
+                Cliente.save(guardado)
+            return redirect('index.html')
     else: 
        form = ClienteForm()
     return render(request, 'index.html', {'form': form})
@@ -37,4 +42,4 @@ def buscar_cliente(request):
     else:
         form=BuscarForm()
     
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'Resultado_Busqueda.html', {'form': form})
