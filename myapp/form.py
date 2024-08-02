@@ -19,8 +19,4 @@ class ClienteForm(forms.Form):
 
 
 class BuscarForm(forms.Form):
-    query = forms.EmailField(max_length=100, widget=forms.TextInput(attrs={
-        'class': 'form-control form-control-lg',
-        'placeholder': 'Buscar por email',
-        'data-sb-validations': 'required'
-    }))
+    email = forms.EmailField(label='Email del Cliente', required=True)

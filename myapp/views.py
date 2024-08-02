@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
 from .form import *
@@ -16,20 +16,24 @@ def registro_cliente(request):
             nombre = form.cleaned_data['nombre']
             apellido = form.cleaned_data['apellido']
             email = form.cleaned_data['email']
-    else:    
+            Cliente.objects.create(nombre=nombre, apellido=apellido, email=email)
+            Cliente.save()
+            return render(request, 'index.html', {'form': form})
+    else: 
         form = ClienteForm()
-
     return render(request, 'index.html', {'form': form})
 
 
 def buscar_cliente(request):
-    form = BuscarForm()
-    resultados = []
-    
     if request.method == 'POST':
         form = BuscarForm(request.POST)
         if form.is_valid():
-            query = form.cleaned_data['query']
-            resultados = Cliente.objects.filter(email__icontains=query)
+            email= form.cleaned_data['email']
+#busqueda de cliente por mail
+            resultados = Cliente.objects.filter(email=email).first
+            if Cliente:
+                return render(request, 'index.html', {'cliente': Cliente})
+            else:
+                form.add_error(None, "Cliente no encontrado.")
     
-    return render(request, 'index.html', {'form': form, 'resultados': resultados})
+    return render(request, 'buscar_cliente.html', {'form': form, 'resultados': resultados})

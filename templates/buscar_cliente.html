@@ -1,20 +1,20 @@
 
 {% extends "base.html" %}
-{% block Buscar %}
+{% block Formulario %}
 <head>
     <meta charset="UTF-8">
     <title>Buscar Cliente</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="mb-3">
         <h1>Buscar Cliente</h1>
-        <form method="post" novalidate>
+        <form method="post" action="{% url 'buscar_cliente' %}>
             {% csrf_token %}
             <div class="row">
                 <div class="col">
-                    {{ form.query.label_tag }}
-                    {{ form.query }}
+                    <label for="email" class="form-label">{{ form.email.label_tag }}</label>
+                    <input>{{ form.email }}</input>
                     <div class="invalid-feedback text-white" data-sb-feedback="query:required">Este campo es requerido.</div>
                 </div>
             </div>
@@ -36,4 +36,4 @@
         {% endif %}
     </div>
 </body>
-{% endblock Buscar %}
+{% endblock Formulario %}
