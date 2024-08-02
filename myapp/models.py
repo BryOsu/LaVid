@@ -8,7 +8,7 @@ user= get_user_model
 class Cliente(models.Model):
     nombre = models.CharField(max_length=40)
     apellido = models.CharField(max_length=40)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
 
@@ -20,7 +20,9 @@ class Cliente(models.Model):
 class Bodegas(models.Model):
     nombre = models.CharField(max_length=40)
     cantidad = models.IntegerField()
+    anio = models.CharField(max_length=4)
 
 class Stock(models.Model):
     nombre = models.CharField(max_length=40)
     disponible = models.BooleanField()
+

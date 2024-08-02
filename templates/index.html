@@ -6,29 +6,32 @@
 {% block Formulario %}
 <div class="container mt-5">
     <h1>Quiero recibir información</h1>
-    <form>
+    <form method="post"> 
         {% csrf_token %}
-        <div class="mb-3">
+        <div data-mdb-input-init class="form-outline mb-4">
           {{ form.email.label_tag }}
           {{ form.email }}
-          <div id="emailHelp" class="form-text">Ingrese su Email</div>
+          <div id="email" class="form-text">Ingrese su Email</div>
         </div>
-        <div class="mb-3">
+        <div data-mdb-input-init class="form-outline mb-4">
             {{ form.nombre.label_tag }}
             {{ form.nombre }}
-          <div id="emailHelp" class="form-text">Ingrese su Nombre</div>
+          <div id="nombre" class="form-text">Ingrese su Nombre</div>
         </div>
-        <div class="mb-3">
+        <div data-mdb-input-init class="form-outline mb-4">
             {{ form.apellido.label_tag }}
             {{ form.apellido }}
-          <div id="emailHelp" class="form-text">Ingrese su Apellido</div>
+          <div id="apellido" class="form-text">Ingrese su Apellido</div>
         </div>
         <button type="submit" class="btn btn-primary">Registrarse</button>
       </form>
+
+
+      
 <body>
     <div class="mb-3">
         <h1>Buscar Cliente</h1>
-        <form>
+        <form method="post">
             {% csrf_token %}
             <div class="row">
                 <div class="col">
@@ -39,20 +42,6 @@
             </div>
             <button type="submit" class="btn btn-primary mt-3">Buscar</button>
         </form>
-
-        {% if resultados %}
-            <h2 class="mt-5">Resultados</h2>
-            <ul class="list-group">
-                {% for cliente in resultados %}
-                    <li class="list-group-item">
-                        <strong>Nombre:</strong> {{ cliente.nombre }}<br>
-                        <strong>Email:</strong> {{ cliente.email }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% elif form.is_bound %}
-            <p class="mt-5 text-danger">No se encontraron resultados.</p>
-        {% endif %}
     </div>
 </body>
 </div>
