@@ -22,10 +22,10 @@ def registro_cliente(request):
             else:
                 guardado=Cliente.objects.create(nombre=nombre, apellido=apellido, email=email)
                 Cliente.save(guardado)
-            return redirect('index.html')
+            return redirect('registro_cliente')
     else: 
         form = ClienteForm()
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'Index.html', {'form': form})
 
 
 def buscar_cliente(request):
