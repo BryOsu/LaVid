@@ -24,7 +24,7 @@ def registro_cliente(request):
                 Cliente.save(guardado)
             return redirect('index.html')
     else: 
-       form = ClienteForm()
+        form = ClienteForm()
     return render(request, 'index.html', {'form': form})
 
 
@@ -42,4 +42,4 @@ def buscar_cliente(request):
     else:
         form=BuscarForm()
     
-    return render(request, 'Resultado_Busqueda.html', {'form': form})
+    return render(request, 'index.html', {'form': form})
