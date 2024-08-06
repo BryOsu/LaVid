@@ -42,4 +42,4 @@ def buscar_cliente(request):
     else:
         form=BuscarForm()
     
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'Index_Busqueda.html', {'form': form})
